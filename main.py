@@ -78,7 +78,7 @@ class SEOFunctions:
             response = requests.get(link['url'])
             soup = BeautifulSoup(response.text, "html.parser")
 
-            title = soup.title.string
+            title = soup.title.string if soup.title else None
             link['title'] = title
             h1 = soup.find("h1").text if soup.find("h1") else None
             link['h1'] = h1
@@ -107,5 +107,5 @@ class SEOFunctions:
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
-    url = "http://www.klarstein.de"
+    url = "http://www.tourlane.de"
     SEOFunctions(url)
